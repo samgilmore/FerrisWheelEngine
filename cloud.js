@@ -34,5 +34,9 @@ class Cloud {
         if (this.x > canvas.width + 100) {
             this.x = -100;
         }
+
+        if (this.x < -100) {
+            this.x = canvas.width + 100;
+        }
     }
 }
