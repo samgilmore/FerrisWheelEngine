@@ -14,7 +14,7 @@ const cloud3 = new Cloud(ctx, canvas.width + 100, 300, 25, 1);
 const leftGrassPatch = new GrassPatch(ctx, 0, 200, canvas.height - 70, 10, 7, 6, 5);
 const rightGrassPatch = new GrassPatch(ctx, 410, 610, canvas.height - 70, 10, 7, 6, 5);
 
-const passengerColors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF8800", "#00FFFF", "#8800FF", "#FFFF88"];
+const passengerColors = ["#FF0000", "#00FF00", "#0000FF", "#FFA500", "#FF00FF", "#00FFFF", "#8B4513", "#FFD700"];
 let passengers = [];
 
 // Web worker setup for clouds

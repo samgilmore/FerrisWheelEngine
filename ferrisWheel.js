@@ -18,7 +18,7 @@ class FerrisWheel {
     // Initialize gondolas with colors and angles
     initializeGondolas() {
         const numberOfCabins = 8;
-        const cabinColors = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF8800", "#00FFFF", "#8800FF", "#FFFF88"];
+        const cabinColors = ["#FF0000", "#00FF00", "#0000FF", "#FFA500", "#FF00FF", "#00FFFF", "#8B4513", "#FFD700"];
         return cabinColors.map((color, i) => ({
             color,
             angle: (i * Math.PI * 2) / numberOfCabins,
