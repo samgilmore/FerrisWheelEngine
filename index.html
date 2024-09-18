@@ -15,11 +15,47 @@
 </head>
 
 <body>
-    <canvas id="ferrisCanvas" width="600" height="600"></canvas>
+
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <canvas id="ferrisCanvas" width="600" height="600"></canvas>
+
+        <div class="control-panel">
+            <button id="startButton">Start</button>
+            <div id="timer">Time: 30</div>
+            <div id="score">Score: 0</div>
+            <span id="liveFPS">Live FPS: 0</span>
+        </div>
+        <div style="margin-top: 20px;">
+            Use arrow keys (←/→) to spin the ferris wheel. Collect as many passengers as you can!
+        </div>
+    </div>
+
     <script src="ferrisWheel.js"></script>
     <script src="cloud.js"></script>
     <script src="grass.js"></script>
+    <script src="worker.js"></script>
+    <script src="passenger.js"></script>
     <script src="main.js"></script>
 </body>
+
+<style>
+    .control-panel {
+        display: flex;
+        justify-content: space-between;
+        width: 600px;
+        margin-top: 5px;
+    }
+
+    @media (max-width: 620px) {
+        .control-panel {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .control-panel>* {
+            margin-bottom: 10px;
+        }
+    }
+</style>
 
 </html>

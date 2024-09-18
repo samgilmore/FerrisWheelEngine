@@ -19,7 +19,7 @@ class Cloud {
         this.ctx.arc(this.x, this.y - 20 * this.sizeMultiplier + shadowOffset, 25 * this.sizeMultiplier, 0, Math.PI * 2);
         this.ctx.fill();
 
-        // Draw white cloud
+        // Draw cloud
         this.ctx.fillStyle = "#ffffff";
         this.ctx.beginPath();
         this.ctx.arc(this.x, this.y, 30 * this.sizeMultiplier, 0, Math.PI * 2);
@@ -29,14 +29,7 @@ class Cloud {
         this.ctx.fill();
     }
 
-    update() {
-        this.x += this.speed;
-        if (this.x > canvas.width + 100) {
-            this.x = -100;
-        }
-
-        if (this.x < -100) {
-            this.x = canvas.width + 100;
-        }
+    setPosition(x) {
+        this.x = x;
     }
 }

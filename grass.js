@@ -6,12 +6,15 @@ class GrassBlade {
         this.tipLength = tipLength;
     }
 
-    draw(y, swayAmplitude, grassSwayAngle) {
+    draw(y, swayAmplitude, grassSwayAngle, interp) {
+        // Interpolate the sway angle for smoother motion
+        const interpolatedSwayAngle = grassSwayAngle + (interp * 0.05);
+
         // Sway the bottom part of the blade (stem)
-        const swayStem = Math.sin(grassSwayAngle + this.x * 0.1) * swayAmplitude;
+        const swayStem = Math.sin(interpolatedSwayAngle + this.x * 0.1) * swayAmplitude;
 
         // Calculate the tip's sway based on the stem's sway
-        const swayTip = Math.sin(grassSwayAngle + this.x * 0.15) * swayAmplitude * 0.7;
+        const swayTip = Math.sin(interpolatedSwayAngle + this.x * 0.15) * swayAmplitude * 0.7;
 
         // Draw the stem
         const stemEndX = this.x + swayStem;
@@ -46,12 +49,12 @@ class GrassPatch {
         }
     }
 
-    draw() {
+    draw(interp) {
         this.ctx.strokeStyle = "#3f9b0b";
         this.ctx.lineWidth = 2;
 
         this.blades.forEach(blade => {
-            blade.draw(this.y, this.swayAmplitude, this.grassSwayAngle);
+            blade.draw(this.y, this.swayAmplitude, this.grassSwayAngle, interp);
         });
 
         this.grassSwayAngle += 0.05;  // Increment the angle for animation
