@@ -56,8 +56,10 @@ class GrassPatch {
         this.blades.forEach(blade => {
             blade.draw(this.y, this.swayAmplitude, this.grassSwayAngle, interp);
         });
+    }
 
-        this.grassSwayAngle += 0.05;  // Increment the angle for animation
+    update(deltaTime) {
+        this.grassSwayAngle += deltaTime * 4;
     }
 }
 

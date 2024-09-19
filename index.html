@@ -15,16 +15,23 @@
 </head>
 
 <body>
-
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
         <canvas id="ferrisCanvas" width="600" height="600"></canvas>
-
+    
         <div class="control-panel">
             <button id="startButton">Start</button>
             <div id="timer">Time: 30</div>
             <div id="score">Score: 0</div>
             <span id="liveFPS">Live FPS: 0</span>
         </div>
+        
+        <!-- FPS Slider -->
+        <div style="margin-top: 10px; width: 600px; display: flex; align-items: center;">
+            <label for="fpsSlider" style="margin-right: 10px;">FPS: </label>
+            <input type="range" id="fpsSlider" min="10" max="120" value="60" style="flex: 1;">
+            <span id="fpsValue">60</span>
+        </div>
+    
         <div style="margin-top: 20px;">
             Use arrow keys (←/→) to spin the ferris wheel. Collect as many passengers as you can!
         </div>

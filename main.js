@@ -5,6 +5,8 @@ const startButton = document.getElementById('startButton');
 const timerDisplay = document.getElementById('timer');
 const scoreDisplay = document.getElementById('score');
 const liveFPSDisplay = document.getElementById('liveFPS');
+const fpsSlider = document.getElementById('fpsSlider');
+const fpsValue = document.getElementById('fpsValue');
 
 // Game objects
 const ferrisWheel = new FerrisWheel(ctx, canvas.width / 2, canvas.height / 2, 200, 40);
@@ -29,8 +31,18 @@ const timeStep = 1000 / 60; // Fixed timeStep for physics
 let lastRenderTime = 0;
 let frameCount = 0;
 let fps = 0;
-const maxFps = 120; // We can change this to whatever we want. But visible FPS will cap at device refresh-rate.
+let maxFps = 60; // We can change this to whatever we want. But visible FPS will cap at device refresh-rate.
 let score = 0;
+
+// Event listener for the FPS slider
+fpsSlider.addEventListener('input', () => {
+    maxFps = parseInt(fpsSlider.value);
+    fpsValue.textContent = maxFps;
+});
+
+// Initialize slider
+fpsSlider.value = maxFps;
+fpsValue.textContent = maxFps;
 
 // Key tracking
 const isKeyDown = { left: false, right: false };
@@ -121,13 +133,6 @@ function updatePhysicsLoop() {
         delta = timeStep / 1000
         updatePhysics(delta);  // Update Ferris wheel and movement
         accumulatedTime -= timeStep;
-
-        // Update cloud positions
-        cloudWorker.postMessage({
-            action: "update",
-            deltaTime: delta,
-            canvasWidth: canvas.width
-        });
     }
 }
 
@@ -207,7 +212,17 @@ function updatePhysics(deltaTime) {
         ferrisWheel.rotateRight(deltaTime);
     }
 
-    updatePassengers(delta);  // Update passenger logic (movement and collisions)
+    leftGrassPatch.update(deltaTime);
+    rightGrassPatch.update(deltaTime);
+
+    updatePassengers(deltaTime);
+    ferrisWheel.updateCabins(deltaTime);
+
+    cloudWorker.postMessage({
+        action: "update",
+        deltaTime: deltaTime,
+        canvasWidth: canvas.width
+    });
 }
 
 // Setup keyboard event listeners

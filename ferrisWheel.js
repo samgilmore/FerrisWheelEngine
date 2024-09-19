@@ -10,7 +10,7 @@ class FerrisWheel {
         this.swayAmplitude = 0.4;
         this.rotationSpeed = 1.5;
         this.swayAngle = 0;
-        this.swaySpeed = 0.05;
+        this.swaySpeed = 2;
 
         this.gondolas = this.initializeGondolas();
     }
@@ -167,8 +167,10 @@ class FerrisWheel {
             this.drawGondola(gondola);
             this.ctx.restore();
         });
+    }
 
-        this.swayAngle += this.swaySpeed;
+    updateCabins(delta) {
+        this.swayAngle += this.swaySpeed * delta;
     }
 
     // Apply the swaying effect to the gondolas
